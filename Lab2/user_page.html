@@ -73,73 +73,13 @@
 
             </div>
             <div class="col-md" >
-                
-                <div class="row">
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="long link placeholder" disabled>
-                  </div>
-                  <div class="col" style="padding-left: 0%;">
-                    <div class="url-list-group input-group" style="margin-left: 0%;">
-                      <input type="text" class="form-control" disabled placeholder="short link placeholder">
-                      <div class="input-group-append">
-                        <button type="button" class="btn btn-default btn-copy js-tooltip js-copy shadow-none "data-toggle="tooltip" data-placement="bottom" title="Copy to clipboard">
-                          <svg class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M17,9H7V7H17M17,13H7V11H17M14,17H7V15H14M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z" /></svg>
-                        </button>
-                      </div>
-                    </div>
-
-                  </div>
+              <div id = "itemListRoot">
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button type = "submit" class = "btn btn-primary btn-copy" id="addButton">Add</button>
                 </div>
-                <div class="row">
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="long link placeholder" disabled>
-                  </div>
-                  <div class="col" style="padding-left: 0%;">
-                    <div class="url-list-group input-group" style="margin-left: 0%;">
-                      <input type="text" class="form-control" disabled placeholder="short link placeholder">
-                      <div class="input-group-append">
-                        <button type="button" class="btn btn-default btn-copy js-tooltip js-copy shadow-none "data-toggle="tooltip" data-placement="bottom" title="Copy to clipboard">
-                          <svg class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M17,9H7V7H17M17,13H7V11H17M14,17H7V15H14M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z" /></svg>
-                        </button>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="long link placeholder" disabled>
-                  </div>
-                  <div class="col" style="padding-left: 0%;">
-                    <div class="url-list-group input-group" style="margin-left: 0%;">
-                      <input type="text" class="form-control" disabled placeholder="short link placeholder">
-                      <div class="input-group-append">
-                        <button type="button" class="btn btn-default btn-copy js-tooltip js-copy shadow-none "data-toggle="tooltip" data-placement="bottom" title="Copy to clipboard">
-                          <svg class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M17,9H7V7H17M17,13H7V11H17M14,17H7V15H14M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z" /></svg>
-                        </button>
-                      </div>
-                    </div>
-
-                  </div>
-                  
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="long link placeholder" disabled>
-                  </div>
-                  <div class="col" style="padding-left: 0%;">
-                    <div class="url-list-group input-group" style="margin-left: 0%;">
-                      <input type="text" class="form-control" disabled placeholder="short link placeholder">
-                      <div class="input-group-append">
-                        <button type="button" class="btn btn-default btn-copy js-tooltip js-copy shadow-none" data-toggle="tooltip" data-placement="bottom" title="Copy to clipboard">
-                          <svg class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M17,9H7V7H17M17,13H7V11H17M14,17H7V15H14M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z" /></svg>
-                        </button>
-                      </div>
-                    </div>
-
-                  </div>
-                  
-                </div>
+              </div>
             </div>
         </div>
 	  </div>
@@ -160,5 +100,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="module" src = "js/main.js"></script>
   </body>
 </html>
