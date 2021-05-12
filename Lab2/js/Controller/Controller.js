@@ -29,11 +29,11 @@ export class Controller {
     }
 
     onOriginalUrlChanged(id,newUrl) {
-        if(this.validateUrl(newUrl)){
+        if(this.validateUrl(newUrl)) {
             this.linksArray[id].originalUrl = newUrl
             this.linksArray[id].shortUrl = this.generateShortLink(newUrl)
             this.view.renderView(this.linksArray)
-        }else {
+        } else {
             this.view.showError("text is not url",id)
         }
     }
