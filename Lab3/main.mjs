@@ -1,9 +1,8 @@
-const express = require('express')
-const path = require('path');
-const session = require('express-session')
+import express from 'express';
+import session from 'express-session'
+
 const app = express()
 const port = 3000
-const htmlPath = path.join(__dirname, '/html')
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -40,6 +39,7 @@ app.post('/login', (req, res) => {
   res.sendStatus(200)
   //res.sendFile(path.join(htmlPath, '/user_page.html'))
 })
+
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`)
 })
