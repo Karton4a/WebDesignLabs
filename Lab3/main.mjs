@@ -1,9 +1,16 @@
 import express from 'express';
 import session from 'express-session'
+import sqlite3 from 'sqlite3'
 import { Controller } from './controller/controller.mjs';
+import { Model } from './model/model.mjs'
+
 const app = express()
 const port = 3000
-
+const connection = new sqlite3.Database('./db/app.db',sqlite3.OPEN_READWRITE,(err) => {
+  if(err) {
+    console.log(err)
+  }
+})
 const controller = new Controller()
 
 app.set('view engine', 'ejs');
