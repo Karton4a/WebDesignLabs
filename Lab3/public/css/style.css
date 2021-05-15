@@ -1,0 +1,182 @@
+header{
+    background-color: #160F30;
+}
+body{
+    font-family: 'Quantico', sans-serif; 
+    background-color: #241663;
+    color: white;
+}
+
+
+.navbar-dark .navbar-brand {
+    font-size: 2em;
+    color: #A72693;
+}
+.navbar-dark .navbar-brand:hover{
+    color: #A72693;
+}
+
+.navbar-dark .nav-item {
+    font-size: 1em;
+}
+.input-group input{
+
+    border-radius: 21px;
+    border:  none;
+}
+.input-group button{
+    border-radius: 21px;
+    color: white;
+    background-color: #A72693;
+    border:  none;
+}
+.input-group button:hover{
+    background-color: #882178;
+    color: white;
+}
+.input-group button:active{
+    background-color: #661a5b;
+    color: white;
+}
+#smllrSpan{
+    color: #A72693;
+}
+
+.index-container
+{
+    margin-top: 10%;
+}
+#bottomText
+{
+    font-size: 2em;
+}
+#topText
+{
+    font-size: 2.5em;
+    margin-bottom: 0%;
+}
+
+button[type = submit] {
+    background-color: #882178;
+    border-color: #882178;
+}
+
+.btn-copy{
+    background-color: #882178;
+}
+.btn-copy svg{
+    fill: white;
+
+}
+.url-list-group{
+    margin-left: 0%;
+}
+.url-list-group input{
+    border-radius: .25rem;
+}
+.url-list-group button{
+    border-radius: .25rem;
+}
+.input-group{
+    margin-bottom: 20px;
+}
+#dropdownMenuUser
+{
+    background-color: #160F30;
+    border: none;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color:#A72693;
+}
+.dropdown-item:active
+{
+    background-color:#661a5b;
+}
+.dropdown-item
+{
+    color: rgb(255, 255, 255);
+}
+.dropdown-menu
+{
+    background-color: #160F30;
+    position: absolute;
+}
+.navbar-nav .dropdown-menu 
+{
+    position: absolute;
+}
+.about-container
+{
+    margin-top: 14%;
+}
+.logo-text
+{
+    color: #A72693;
+    font-size:70px;
+}
+.about-text
+{
+    font-size:30px;
+}
+.register-container
+{
+    margin-top: 7%;
+}
+.login-container
+{
+    margin-top: 7%;
+}
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    margin-bottom: 60px; /* Margin bottom by footer height */
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #241663;
+  }
+
+.footer-link
+{
+    color:white;
+    text-decoration: none !important        
+}
+.footer-link:hover
+{
+    color:white;
+
+}
+
+@media (min-width: 768px) {
+
+    .container #enterForm{
+    margin-left: 25%;
+    margin-right: 25%;
+    }
+    .row .input-group{
+    margin-left: 15%;
+    margin-right: 15%;
+    }
+   
+}
+
+@media (max-width: 1024px) {
+    .index-container{
+        margin-top: 30%;
+    }
+    .login-container
+    {
+        margin-top: 20%;
+    }
+    .about-container
+    {
+        margin-top: 40%;
+    }
+ }
