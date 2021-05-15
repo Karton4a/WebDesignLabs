@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Smaller</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Quantico:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+	<header>
+		<%- include('../partials/navbar'); %>
+	</header>
+	<div class="container index-container">
+		<div id="textUrl">
+			<p class="text-center" id = "topText">Type URL</p>
+			<p class="text-center" id ="bottomText">and i'll make it <span id="smllrSpan" >smllr</span></p>
+		</div>
+		<div class="row">
+			<div class="input-group mt-1 ">
+				<input type="text" class="form-control shadow-none">
+				<div class="input-group-append">
+					<button class="btn shadow-none" type="button">Shorten</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%- include('../partials/footer'); %>
+    <%- include('../partials/scripts'); %>
+  </body>
+</html>

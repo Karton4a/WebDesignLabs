@@ -16,20 +16,24 @@ app.use(session({
 }))  
 
 app.get('/', (req, res) => {
-    console.log(req.session.userId = 10)
-    res.sendFile(path.join(htmlPath, '/index.html'))
+    res.render('pages/index')
+    //res.sendFile(path.join(htmlPath, '/index.html'))
 })
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(htmlPath, '/login.html'))
+  res.render('pages/login')
+  //res.sendFile(path.join(htmlPath, '/login.html'))
 })
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(htmlPath, '/about.html'))
+  res.render('pages/about')
+  //res.sendFile(path.join(htmlPath, '/about.html'))
 })
 app.get('/register', (req, res) => {
-  res.sendFile(path.join(htmlPath, '/register.html'))
+  res.render('pages/register')
+  //res.sendFile(path.join(htmlPath, '/register.html'))
 })
 app.get('/userPage', (req, res) => {
-  res.sendFile(path.join(htmlPath, '/user_page.html'))
+  res.render('pages/user_page')
+  //res.sendFile(path.join(htmlPath, '/user_page.html'))
 })
 
 app.post('/login', (req, res) => {
