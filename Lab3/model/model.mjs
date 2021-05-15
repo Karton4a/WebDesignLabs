@@ -1,4 +1,3 @@
-
 export class Model {
     constructor(dbConnection) {
         this.db = dbConnection

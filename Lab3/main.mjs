@@ -6,11 +6,13 @@ import { Model } from './model/model.mjs'
 
 const app = express()
 const port = 3000
+
 const connection = new sqlite3.Database('./db/app.db',sqlite3.OPEN_READWRITE,(err) => {
   if(err) {
     console.log(err)
   }
 })
+const model = new Model(connection)
 const controller = new Controller()
 
 app.set('view engine', 'ejs');
