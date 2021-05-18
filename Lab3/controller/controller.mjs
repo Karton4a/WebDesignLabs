@@ -1,8 +1,24 @@
 import cryptoRandomString from 'crypto-random-string';
 
 export class Controller {
+
     constructor(model) {
         this.model = model
+    }
+    allowedSignIn(req,res,next) {
+        if(req.session.userId) {
+            next()
+        }
+        else {
+            res.redirect('/login')
+        }
+    }
+    allowedNotSignIn(req,res,next) {
+        if(req.session.userId) {
+            res.redirect('/userPage')
+        } else {
+            next()
+        }
     }
     async login(email,password,context) {
         try {

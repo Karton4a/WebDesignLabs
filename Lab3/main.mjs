@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
     res.render('pages/index',{userName : req.session.userName})
     //res.sendFile(path.join(htmlPath, '/index.html'))
 })
-app.get('/login', (req, res) => {
+app.get('/login',controller.allowedNotSignIn, (req, res) => {
   res.render('pages/login')
   //res.sendFile(path.join(htmlPath, '/login.html'))
 })
@@ -37,11 +37,11 @@ app.get('/about', (req, res) => {
   res.render('pages/about',{userName : req.session.userName})
   //res.sendFile(path.join(htmlPath, '/about.html'))
 })
-app.get('/register', (req, res) => {
+app.get('/register',controller.allowedNotSignIn, (req, res) => {
   res.render('pages/register')
   //res.sendFile(path.join(htmlPath, '/register.html'))
 })
-app.get('/userPage', (req, res) => {
+app.get('/userPage',controller.allowedSignIn, (req, res) => {
   res.render('pages/user_page',{userName : req.session.userName})
   //res.sendFile(path.join(htmlPath, '/user_page.html'))
 })
