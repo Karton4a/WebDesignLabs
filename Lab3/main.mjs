@@ -13,7 +13,7 @@ const connection = new sqlite3.Database('./db/app.db',sqlite3.OPEN_READWRITE,(er
   }
 })
 const model = new Model(connection)
-const controller = new Controller()
+const controller = new Controller(model)
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
