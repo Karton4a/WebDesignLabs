@@ -53,14 +53,16 @@
                 </div>
             </div>
             <div class="col-1">
-
             </div>
-            <div class="col-md" >
-              <div id = "itemListRoot">
-              </div>
+            <div class="col-md" id = "app">
+                <div v-for = "(link,key) in links" >
+                    
+                    <link-view :id = "key" :url = "link.original_link" :short-url = "link.short_link" v-on:on-delete = "removeItem" v-on:on-original-change = "changeItem"></link-view>
+                </div>
+                <virtual-link-view v-on:on-edit-end = "addItem" v-if = "showVirtualLink"></virtual-link-view>
               <div class="row">
                 <div class="col">
-                  <button type = "submit" class = "btn btn-primary btn-copy" id="addButton">Add</button>
+                  <button type = "submit" class = "btn btn-primary btn-copy" v-on:click = "onAdd">Add</button>
                 </div>
               </div>
             </div>
@@ -68,5 +70,7 @@
 	  </div>
     <%- include('../partials/footer'); %>
     <%- include('../partials/scripts'); %>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type = "module" src="scripts/app.js"></script>
   </body>
 </html>
