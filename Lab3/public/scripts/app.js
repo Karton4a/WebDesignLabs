@@ -67,7 +67,7 @@ let app = new Vue({
     el: '#app',
     
     data: {
-      links : [{original_link : "asfasfas",short_link : "asafsafaffasfas"}],
+      links : [],
       showVirtualLink : false,
     },
     methods: {
@@ -79,18 +79,39 @@ let app = new Vue({
           this.showVirtualLink = false
           return
         }
-
-        if(this.links.find((val,index,obj) => val.original_link === text) !== undefined) {
-          //add link
+        if(this.links.find((val,index,obj) => val.original_link === text) === undefined) {
+          let self = this;
+          axios.post('/createShort',{
+            params: {
+                link: text
+            }
+          })
+          .then((response)=>{
+            console.log(response.data)
+            self.links.push({
+                id : response.data.id,
+                original_link : text,
+                short_link : window.location.host + '/' +response.data.short_link})
+          })
         }
         this.showVirtualLink = false
       },
       changeItem : function(id,newText) {
+        let updateItemId = this.links[id].id
+        axios.patch('/updateLink',{
+          id : updateItemId,
+          newText : newText
+        })
         console.log(id + " " + newText)
       },
       removeItem : function(id) {
+        let removeItemId = this.links[id].id
+        axios.delete('/deleteLink',{
+          data : {
+            id : removeItemId,
+          }
+        })
         this.links.splice(id,1)
-        console.log(id)
       },
       validateUrl : function(url) {
         try {
@@ -102,9 +123,16 @@ let app = new Vue({
       }
     },
     created: function () {
-
-      //do ajax request
-
-      // `this` указывает на экземпляр vm
+      let self = this
+      axios.get('/getAllLinksData',)
+      .then((response) => {
+        for (let index = 0; index < response.data.length; index++) {
+          const element = response.data[index];
+          self.links.push({
+            id : element.id,
+            original_link : element.original_link,
+            short_link : window.location.host + '/' +element.short_link})
+        }
+      })
     }
   })
