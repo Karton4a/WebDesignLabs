@@ -27,7 +27,7 @@ export class Controller {
                 context.session.userName = result.login
                 context.session.userId = result.id
                 context.response.redirect('/')
-                console.log('successful login' + result.id)
+                console.log('successful login ' + result.id)
             } else {
                 context.response.redirect('/login')
             }
@@ -43,6 +43,7 @@ export class Controller {
     async register(registration_data,context) {
         try {
             let id = await this.model.addUser(registration_data)
+            console.log(id)
             context.session.userName = registration_data.login
             context.session.userId = id
             context.response.redirect('/')
@@ -51,13 +52,72 @@ export class Controller {
             context.response.redirect('/register')
         }
     }
-    async addLink(link,context) {
+    async generateShortLink(link,context) {
         try {
             let short = cryptoRandomString({length: 10, type: 'url-safe'});
-            await this.model.addLink(link,short,context.session.userId)
-            context.response.status(200)
+            let id = await this.model.addLink(link,short,context.session.userId)
+            context.response.send({id : id,short_link : short})
         } catch (error) {
             console.log('error')
+            context.response.status(500)
         }
+    }
+    async redirectToOriginal(shortLink,context) {
+        try {
+            let data = await this.model.findOriginalLink(shortLink,context.session.userId)
+            console.log(data)
+            if(data) {
+                context.response.redirect(data.original_link)
+            } else {
+                context.response.status(404).send('page not found')
+            }
+        } catch (error) {
+            console.log('bd error')
+            context.response.status(404).send('page not found')
+        }
+    }
+    async getAllLinks(context){
+        if(context.session.userId === undefined) {
+            context.response.status(403)
+            return
+        }
+
+        try {
+            let data = await this.model.getUserLinks(context.session.userId)
+            context.response.send(data)
+        } catch (error) {
+
+            console.log('error getAllLinks')
+            console.log(error)
+            context.response.status(500)
+        }
+    }
+    async deleteLink(linkId,context){
+        console.log(linkId)
+        if(context.session.userId === undefined){
+            context.response.status(403)
+            return
+        }
+        try {
+            await this.model.removeLink(context.session.userId,linkId)
+            console.log("after await")
+            context.response.status(200)
+        } catch (error) {
+            context.response.status(500)
+        }
+    }
+    async updateLink(linkId,newLink,context) {
+
+        if(context.session.userId === undefined){
+            context.response.status(403)
+            return
+        }
+        try {
+            await this.model.updateLink(context.session.userId,linkId,newLink)
+            context.response.status(200)
+        } catch (error) {
+            context.response.status(500)
+        }
+
     }
 }

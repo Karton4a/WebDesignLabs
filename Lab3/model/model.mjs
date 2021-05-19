@@ -6,11 +6,11 @@ export class Model {
     addUser(data) {
         var self = this;
         return new Promise((resolve,reject) => {
-            self.db.run('INSERT INTO users (login,password,email,sex,birth_date) VALUES (?,?,?,?,?)',[data.login,data.pass,data.email,data.sex,data.birthDate],(error) => {
+            self.db.run('INSERT INTO users (login,password,email,sex,birth_date) VALUES (?,?,?,?,?)',[data.login,data.pass,data.email,data.sex,data.birthDate],function (error) {
                 if(error) {
                     reject(error)
                 } else {
-                    resolve(this.lastId)
+                    resolve(this.lastID)
                 }
                 
             })
@@ -33,11 +33,11 @@ export class Model {
     addLink(link,shortLink,userId) {
         var self = this;
         return new Promise((resolve,reject) => {
-            self.db.run('INSERT INTO links (original_link,short_link,user_id) VALUES (?,?,?)',[link,shortLink,userId],(error) => {
+            self.db.run('INSERT INTO links (original_link,short_link,user_id) VALUES (?,?,?)',[link,shortLink,userId],function (error) {
                 if(error) {
                     reject(error)
                 } else {
-                    resolve(this.lastId)
+                    resolve(this.lastID)
                 }
                 
             })
@@ -46,7 +46,7 @@ export class Model {
     getUserLinks(userId) {
         var self = this;
         return new Promise((resolve,reject) => {
-            self.db.all('SELECT * FROM links WHERE user_id = ?',[userId],(error,rows)=>{
+            self.db.all('SELECT id,original_link,short_link FROM links WHERE user_id = ?',[userId],(error,rows)=>{
                 if(error) {
                     reject(error)
                 } else {
@@ -58,20 +58,47 @@ export class Model {
     findOriginalLink(shortLink,userId) {
         var self = this;
         return new Promise((resolve,reject) => {
-            self.db.get('SELECT short_link FROM links WHERE user_id = ? AND short_link = ?',[userId,shortLink],(error,row)=>{
+            
+            let callback = (error,row)=>{
                 if(error) {
                     reject(error)
                 } else {
                     resolve(row)
                 }
+            }
+
+            if(userId) {
+                self.db.get('SELECT original_link FROM links WHERE user_id = ? AND short_link = ?',[userId,shortLink],callback)
+            } else {
+                self.db.get('SELECT original_link FROM links WHERE user_id IS NULL AND short_link = ?',[shortLink],callback)
+            }
+
+        })
+    }
+    updateLink(userId,linkId,newLink) {
+        var self = this;
+        return new Promise((resolve,reject) => {
+            self.db.run('UPDATE links SET original_link = ? WHERE user_id = ? AND id = ?',[newLink,userId,linkId],(err) =>{
+                if(err){
+                    reject(err)
+                } else {
+                    resolve()
+                }
             })
         })
     }
-    updateLink(userId,link) {
+    removeLink(userId,linkId) {
+        var self = this;
+        return new Promise((resolve,reject)=>{
+            self.db.run('DELETE FROM links WHERE user_id = ? AND id = ?',[userId,linkId],(err)=>{
+                if(err){
+                    reject(err)
+                } else {
+                    resolve()
+                }
+            })
 
-    }
-    removeLink(userId,originalLink) {
-        this.db.run('DELETE FROM links WHERE user_id = ? AND original_link = ?',[userId,originalLink])
+        })
     }
 
 }
