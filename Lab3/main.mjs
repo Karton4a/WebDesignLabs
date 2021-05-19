@@ -50,15 +50,23 @@ app.get('/logOut',(req,res) => {
   req.session.userId = undefined
   res.redirect('/')
 })
-app.get('/getShort',(req,res) =>{
-  controller.generateShortLink(req.query.link,{response:res,session : req.session})
+app.post('/createShort',(req,res) =>{
+  controller.generateShortLink(req.body.link,{response:res,session : req.session})
 })
-
+app.get('/getAllLinksData',(req,res) =>{
+  controller.getAllLinks({response:res,session : req.session})
+})
 app.post('/login', (req, res) => {
   controller.login(req.body.email,req.body.pass,{response:res,session : req.session})
 })
 app.post('/register',(req,res) => {
   controller.register(req.body,{response:res,session : req.session})
+})
+app.delete('/deleteLink', (req,res) => {
+  controller.deleteLink(req.body.id,{response:res,session : req.session})
+})
+app.patch('/updateLink', (req,res) =>{
+  controller.updateLink(req.body.id,req.body.newText,{response:res,session : req.session})
 })
 app.get('*',(req,res) => {
   controller.redirectToOriginal(req.originalUrl.substring(1),{response:res,session : req.session})
