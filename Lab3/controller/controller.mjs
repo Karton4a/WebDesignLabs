@@ -24,8 +24,8 @@ export class Controller {
         try {
             let result = await this.model.getUserByEmail(email)
             if(result.password === password) {
-                context.session.userName = result.login
-                context.session.userId = result.id
+
+                this.signIn(result.id,result,context.session)
                 context.response.redirect('/')
                 console.log('successful login ' + result.id)
             } else {
@@ -37,15 +37,17 @@ export class Controller {
     }
     signIn(id,data,session) {
         session.userId = id;
-        session.userData = data
+        session.userName = data.login
+        session.email = data.email
+        session.gender = data.sex
+        session.date = data.birth_date
     }
 
     async register(registration_data,context) {
         try {
             let id = await this.model.addUser(registration_data)
             console.log(id)
-            context.session.userName = registration_data.login
-            context.session.userId = id
+            signIn(id,registration_data,context.session)
             context.response.redirect('/')
             console.log('successful registration')
         } catch (error) {
@@ -53,6 +55,8 @@ export class Controller {
         }
     }
     async generateShortLink(link,context) {
+        console.log(context.session.userId)
+        console.log(link)
         try {
             let short = cryptoRandomString({length: 10, type: 'url-safe'});
             let id = await this.model.addLink(link,short,context.session.userId)
@@ -92,15 +96,13 @@ export class Controller {
             context.response.status(500)
         }
     }
-    async deleteLink(linkId,context){
-        console.log(linkId)
+    async deleteLink(linkId,context) {
         if(context.session.userId === undefined){
             context.response.status(403)
             return
         }
         try {
             await this.model.removeLink(context.session.userId,linkId)
-            console.log("after await")
             context.response.status(200)
         } catch (error) {
             context.response.status(500)

@@ -3,9 +3,12 @@ import session from 'express-session'
 import sqlite3 from 'sqlite3'
 import { Controller } from './controller/controller.mjs';
 import { Model } from './model/model.mjs'
+import {setupDatabase} from './setup_database.mjs'
 
 const app = express()
 const port = 3000
+
+setupDatabase()
 
 const connection = new sqlite3.Database('./db/app.db',sqlite3.OPEN_READWRITE,(err) => {
   if(err) {
@@ -42,7 +45,11 @@ app.get('/register',controller.allowedNotSignIn, (req, res) => {
   //res.sendFile(path.join(htmlPath, '/register.html'))
 })
 app.get('/userPage',controller.allowedSignIn, (req, res) => {
-  res.render('pages/user_page',{userName : req.session.userName})
+  res.render('pages/user_page',
+  {userName : req.session.userName,
+    email : req.session.email,
+    gender:req.session.gender,
+    date : req.session.date})
   //res.sendFile(path.join(htmlPath, '/user_page.html'))
 })
 app.get('/logOut',(req,res) => {
