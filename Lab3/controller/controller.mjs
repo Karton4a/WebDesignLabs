@@ -47,7 +47,7 @@ export class Controller {
         try {
             let id = await this.model.addUser(registration_data)
             console.log(id)
-            signIn(id,registration_data,context.session)
+            this.signIn(id,registration_data,context.session)
             context.response.redirect('/')
             console.log('successful registration')
         } catch (error) {

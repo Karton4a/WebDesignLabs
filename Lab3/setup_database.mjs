@@ -1,6 +1,11 @@
 import sqlite3 from 'sqlite3'
+import fs from 'fs'
 
 export function setupDatabase() {
+
+    if (!fs.existsSync('./db')){
+        fs.mkdirSync('./db');
+    }
     sqlite3.verbose()
     const db = new sqlite3.Database('./db/app.db')
 
