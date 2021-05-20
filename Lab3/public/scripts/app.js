@@ -82,9 +82,7 @@ let app = new Vue({
         if(this.links.find((val,index,obj) => val.original_link === text) === undefined) {
           let self = this;
           axios.post('/createShort',{
-            params: {
-                link: text
-            }
+            link: text
           })
           .then((response)=>{
             console.log(response.data)
